@@ -1,0 +1,2326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.5">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="social-breakpoint-test" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+      </ThreadGroup>
+      <hashTree/>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+          <collectionProp name="Arguments.arguments">
+            <elementProp name="server" elementType="Argument">
+              <stringProp name="Argument.name">server</stringProp>
+              <stringProp name="Argument.value">staging-apisocial.stockedge.com</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="staging_server" elementType="Argument">
+              <stringProp name="Argument.name">staging_server</stringProp>
+              <stringProp name="Argument.value">staging-apisocial.stockedge.com</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="prod_server" elementType="Argument">
+              <stringProp name="Argument.name">prod_server</stringProp>
+              <stringProp name="Argument.value">apisocial.stockedge.com</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+          </collectionProp>
+        </Arguments>
+        <hashTree/>
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config" enabled="true">
+          <stringProp name="filename">C:/Users/USER12311674/Desktop/P2/Projects/Social/1User_Data.csv.csv</stringProp>
+          <stringProp name="fileEncoding"></stringProp>
+          <stringProp name="variableNames">clubId</stringProp>
+          <boolProp name="ignoreFirstLine">false</boolProp>
+          <stringProp name="delimiter">,</stringProp>
+          <boolProp name="quotedData">false</boolProp>
+          <boolProp name="recycle">true</boolProp>
+          <boolProp name="stopThread">false</boolProp>
+          <stringProp name="shareMode">shareMode.all</stringProp>
+        </CSVDataSet>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="GraphQLHTTPSamplerGui" testclass="HTTPSamplerProxy" testname="Get Club" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument" enabled="true">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&quot;operationName&quot;:null,&quot;query&quot;:&quot;query {\n  getClub(clubId:\&quot;${clubId}\&quot;) {\n    clubId\n    clubHandle\n    clubName\n    clubBio\n    avatar\n    cover\n    owner{\n      firstName\n      lastName\n      username\n    }\n    ownerId\n    clubType\n    ismember\n    issubscribed\n  }\n}&quot;}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">staging-apisocial.stockedge.com</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path"></stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="GraphQLHTTPSampler.operationName"></stringProp>
+          <stringProp name="GraphQLHTTPSampler.query">query {
+  getClub(clubId:&quot;${clubId}&quot;) {
+    clubId
+    clubHandle
+    clubName
+    clubBio
+    avatar
+    cover
+    owner{
+      firstName
+      lastName
+      username
+    }
+    ownerId
+    clubType
+    ismember
+    issubscribed
+  }
+}</stringProp>
+          <stringProp name="GraphQLHTTPSampler.variables"></stringProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">accept	</stringProp>
+                <stringProp name="Header.value">*/*</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Authorization</stringProp>
+                <stringProp name="Header.value">Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3ZGE1ZGExNS1jM2ZiLTRiZjAtOTM3ZS01MThlY2UyZmM3ZDgiLCJwIjp7fSwiaWF0IjoxNjc1MjI1Nzc3LCJleHAiOjE2NzU2NTc3Nzd9.D2MWbrNZF3_w5Lb7GL43Rly6axpUrW44VSJXW3KQTCU</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">clubId</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$..getClub.clubId</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="false">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">${__setProperty(valueToPass,${clubId})};</stringProp>
+          </BeanShellPostProcessor>
+          <hashTree/>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="GraphQLHTTPSamplerGui" testclass="HTTPSamplerProxy" testname="Get Club Feed" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument" enabled="true">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&quot;operationName&quot;:null,&quot;query&quot;:&quot;query \n{\n  getClubPosts(limit: 20\n    offset: 0\n    clubId: \&quot;${clubId}\&quot;) \n  {\n    ...PostFields\n    __typename                                                         \n  }\n}\n\nfragment PostFields on Post {\n  postId\n  User {\n    ...UserFields\n    __typename\n  }\n  Club {\n    clubId\n    clubHandle\n    clubName\n    __typename\n  }\n  media {\n    type\n    uri\n    name\n    height\n    width\n    rotation\n    __typename\n  }\n  textV2\n  hasPoll\n  getPoll {\n    ...GetPollFields\n    __typename\n  }\n  createdAt\n  upvotecount\n  downvotecount\n  sharecount\n  commentcount\n  isUpvoted\n  isDownvoted\n  isbookmarked\n  isSuspected\n  sharePostId\n  getSharedPost {\n    ...GetSharedPostFields\n    __typename\n  }\n  clubPostShareSetting {\n    isVerifiedCanShare\n    greenTickCanShare\n    normalUserCanShare\n    __typename\n  }\n  __typename\n}\n\nfragment UserFields on User {\n  id\n  firstName\n  lastName\n  username\n  avatar\n  isVerified\n  greenTick\n  tick3\n  __typename\n}\n\nfragment GetPollFields on Poll {\n  pollId\n  question\n  userId\n  postId\n  createdAt\n  updatedAt\n  expiryEnum\n  expiryDate\n  hasUserSelected\n  hasExpired\n  votes\n  options {\n    optionId\n    pollId\n    optionText\n    hasUserSelected\n    votes\n    __typename\n  }\n  __typename\n}\n\nfragment GetSharedPostFields on Post {\n  postId\n  User {\n    ...UserFields\n    __typename\n  }\n  Club {\n    clubId\n    clubHandle\n    clubName\n    __typename\n  }\n  media {\n    type\n    uri\n    name\n    height\n    width\n    rotation\n    __typename\n  }\n  textV2\n  hasPoll\n  getPoll {\n    ...GetPollFields\n    __typename\n  }\n  createdAt\n  isSuspected\n  clubPostShareSetting {\n    isVerifiedCanShare\n    greenTickCanShare\n    normalUserCanShare\n    __typename\n  }\n  __typename\n}&quot;}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">staging-apisocial.stockedge.com</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path"></stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="GraphQLHTTPSampler.operationName"></stringProp>
+          <stringProp name="GraphQLHTTPSampler.query">query 
+{
+  getClubPosts(limit: 20
+    offset: 0
+    clubId: &quot;${clubId}&quot;) 
+  {
+    ...PostFields
+    __typename                                                         
+  }
+}
+
+fragment PostFields on Post {
+  postId
+  User {
+    ...UserFields
+    __typename
+  }
+  Club {
+    clubId
+    clubHandle
+    clubName
+    __typename
+  }
+  media {
+    type
+    uri
+    name
+    height
+    width
+    rotation
+    __typename
+  }
+  textV2
+  hasPoll
+  getPoll {
+    ...GetPollFields
+    __typename
+  }
+  createdAt
+  upvotecount
+  downvotecount
+  sharecount
+  commentcount
+  isUpvoted
+  isDownvoted
+  isbookmarked
+  isSuspected
+  sharePostId
+  getSharedPost {
+    ...GetSharedPostFields
+    __typename
+  }
+  clubPostShareSetting {
+    isVerifiedCanShare
+    greenTickCanShare
+    normalUserCanShare
+    __typename
+  }
+  __typename
+}
+
+fragment UserFields on User {
+  id
+  firstName
+  lastName
+  username
+  avatar
+  isVerified
+  greenTick
+  tick3
+  __typename
+}
+
+fragment GetPollFields on Poll {
+  pollId
+  question
+  userId
+  postId
+  createdAt
+  updatedAt
+  expiryEnum
+  expiryDate
+  hasUserSelected
+  hasExpired
+  votes
+  options {
+    optionId
+    pollId
+    optionText
+    hasUserSelected
+    votes
+    __typename
+  }
+  __typename
+}
+
+fragment GetSharedPostFields on Post {
+  postId
+  User {
+    ...UserFields
+    __typename
+  }
+  Club {
+    clubId
+    clubHandle
+    clubName
+    __typename
+  }
+  media {
+    type
+    uri
+    name
+    height
+    width
+    rotation
+    __typename
+  }
+  textV2
+  hasPoll
+  getPoll {
+    ...GetPollFields
+    __typename
+  }
+  createdAt
+  isSuspected
+  clubPostShareSetting {
+    isVerifiedCanShare
+    greenTickCanShare
+    normalUserCanShare
+    __typename
+  }
+  __typename
+}
+</stringProp>
+          <stringProp name="GraphQLHTTPSampler.variables"></stringProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">accept</stringProp>
+                <stringProp name="Header.value">*/*</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Authorization</stringProp>
+                <stringProp name="Header.value">Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3ZGE1ZGExNS1jM2ZiLTRiZjAtOTM3ZS01MThlY2UyZmM3ZDgiLCJwIjp7fSwiaWF0IjoxNjc1MjI1Nzc3LCJleHAiOjE2NzU2NTc3Nzd9.D2MWbrNZF3_w5Lb7GL43Rly6axpUrW44VSJXW3KQTCU</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="GraphQLHTTPSamplerGui" testclass="HTTPSamplerProxy" testname="Get Club Detail" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument" enabled="true">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&quot;operationName&quot;:null,&quot;query&quot;:&quot;query  {\n  getClub(clubId: \&quot;${clubId}\&quot;) {\n    ...ClubFields\n    clubType\n    memberType\n    __typename\n  }\n}\n\nfragment ClubFields on Club {\n  clubId\n  clubName\n  clubHeadline\n  clubHandle\n  clubBio\n  ownerId\n  avatar\n  cover\n  ismember\n  issubscribed\n  totalMemberCount\n  disclaimer\n  showDisclaimer\n  __typename\n}&quot;}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${server}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path"></stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="GraphQLHTTPSampler.operationName"></stringProp>
+          <stringProp name="GraphQLHTTPSampler.query">query  {
+  getClub(clubId: &quot;${clubId}&quot;) {
+    ...ClubFields
+    clubType
+    memberType
+    __typename
+  }
+}
+
+fragment ClubFields on Club {
+  clubId
+  clubName
+  clubHeadline
+  clubHandle
+  clubBio
+  ownerId
+  avatar
+  cover
+  ismember
+  issubscribed
+  totalMemberCount
+  disclaimer
+  showDisclaimer
+  __typename
+}
+</stringProp>
+          <stringProp name="GraphQLHTTPSampler.variables"></stringProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">accept</stringProp>
+                <stringProp name="Header.value">*/*</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Authorization</stringProp>
+                <stringProp name="Header.value">Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3ZGE1ZGExNS1jM2ZiLTRiZjAtOTM3ZS01MThlY2UyZmM3ZDgiLCJwIjp7fSwiaWF0IjoxNjc1MjI1Nzc3LCJleHAiOjE2NzU2NTc3Nzd9.D2MWbrNZF3_w5Lb7GL43Rly6axpUrW44VSJXW3KQTCU</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">clubId</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$..getClub.clubId</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="GraphQLHTTPSamplerGui" testclass="HTTPSamplerProxy" testname="Get Club Permissions Copy" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument" enabled="true">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&quot;operationName&quot;:null,&quot;query&quot;:&quot;query  checkPermission\n{\n(clubId: \&quot;${clubId}\&quot;), \n  Action: \&quot;can_post\&quot;\n  }&quot;}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${server}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path"></stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="GraphQLHTTPSampler.operationName"></stringProp>
+          <stringProp name="GraphQLHTTPSampler.query">query  checkPermission
+{
+(clubId: &quot;${clubId}&quot;), 
+  Action: &quot;can_post&quot;
+  }
+</stringProp>
+          <stringProp name="GraphQLHTTPSampler.variables"></stringProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">accept</stringProp>
+                <stringProp name="Header.value">*/*</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Authorization</stringProp>
+                <stringProp name="Header.value">Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3ZGE1ZGExNS1jM2ZiLTRiZjAtOTM3ZS01MThlY2UyZmM3ZDgiLCJwIjp7fSwiaWF0IjoxNjc1MjI1Nzc3LCJleHAiOjE2NzU2NTc3Nzd9.D2MWbrNZF3_w5Lb7GL43Rly6axpUrW44VSJXW3KQTCU</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="GraphQLHTTPSamplerGui" testclass="HTTPSamplerProxy" testname="Get HashTag Details" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument" enabled="true">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&quot;operationName&quot;:null,&quot;query&quot;:&quot;query {\n  getHashTagDetails(hashTagName:\&quot;globalmarket\&quot;) {\n    hashtag {\n      hashtagName\n      hashtagType\n      postCount\n      isfollow\n      issubscribed\n      __typename\n    }\n    discussions\n    followers\n    __typename\n  }\n}&quot;}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${server}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path"></stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="GraphQLHTTPSampler.operationName"></stringProp>
+          <stringProp name="GraphQLHTTPSampler.query">query {
+  getHashTagDetails(hashTagName:&quot;globalmarket&quot;) {
+    hashtag {
+      hashtagName
+      hashtagType
+      postCount
+      isfollow
+      issubscribed
+      __typename
+    }
+    discussions
+    followers
+    __typename
+  }
+}
+</stringProp>
+          <stringProp name="GraphQLHTTPSampler.variables"></stringProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">accept</stringProp>
+                <stringProp name="Header.value">*/*</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Authorization</stringProp>
+                <stringProp name="Header.value">Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3ZGE1ZGExNS1jM2ZiLTRiZjAtOTM3ZS01MThlY2UyZmM3ZDgiLCJwIjp7fSwiaWF0IjoxNjc1MjI1Nzc3LCJleHAiOjE2NzU2NTc3Nzd9.D2MWbrNZF3_w5Lb7GL43Rly6axpUrW44VSJXW3KQTCU</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor" enabled="true">
+            <stringProp name="JSONPostProcessor.referenceNames">hashtagName</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.data..hashtagName</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="GraphQLHTTPSamplerGui" testclass="HTTPSamplerProxy" testname="Get Post By hasgTag Detail" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument" enabled="true">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&quot;operationName&quot;:null,&quot;query&quot;:&quot;query {\n  getPostsByHashTagV2(hashTagName:\&quot;${hashtagName}\&quot;\n    limit:20,\n    offset:0) {\n    ...PostFields\n    __typename\n  }\n}\n\nfragment PostFields on Post {\n  postId\n  User {\n    ...UserFields\n    __typename\n  }\n  Club {\n    clubId\n    clubHandle\n    clubName\n    __typename\n  }\n  media {\n    type\n    uri\n    name\n    height\n    width\n    rotation\n    __typename\n  }\n  textV2\n  hasPoll\n  getPoll {\n    ...GetPollFields\n    __typename\n  }\n  createdAt\n  upvotecount\n  downvotecount\n  sharecount\n  commentcount\n  isUpvoted\n  isDownvoted\n  isbookmarked\n  isSuspected\n  sharePostId\n  getSharedPost {\n    ...GetSharedPostFields\n    __typename\n  }\n  clubPostShareSetting {\n    isVerifiedCanShare\n    greenTickCanShare\n    normalUserCanShare\n    __typename\n  }\n  __typename\n}\n\nfragment UserFields on User {\n  id\n  firstName\n  lastName\n  username\n  avatar\n  isVerified\n  greenTick\n  tick3\n  __typename\n}\n\nfragment GetPollFields on Poll {\n  pollId\n  question\n  userId\n  postId\n  createdAt\n  updatedAt\n  expiryEnum\n  expiryDate\n  hasUserSelected\n  hasExpired\n  votes\n  options {\n    optionId\n    pollId\n    optionText\n    hasUserSelected\n    votes\n    __typename\n  }\n  __typename\n}\n\nfragment GetSharedPostFields on Post {\n  postId\n  User {\n    ...UserFields\n    __typename\n  }\n  Club {\n    clubId\n    clubHandle\n    clubName\n    __typename\n  }\n  media {\n    type\n    uri\n    name\n    height\n    width\n    rotation\n    __typename\n  }\n  textV2\n  hasPoll\n  getPoll {\n    ...GetPollFields\n    __typename\n  }\n  createdAt\n  isSuspected\n  clubPostShareSetting {\n    isVerifiedCanShare\n    greenTickCanShare\n    normalUserCanShare\n    __typename\n  }\n  __typename\n}&quot;}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${server}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path"></stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="GraphQLHTTPSampler.operationName"></stringProp>
+          <stringProp name="GraphQLHTTPSampler.query">query {
+  getPostsByHashTagV2(hashTagName:&quot;${hashtagName}&quot;
+    limit:20,
+    offset:0) {
+    ...PostFields
+    __typename
+  }
+}
+
+fragment PostFields on Post {
+  postId
+  User {
+    ...UserFields
+    __typename
+  }
+  Club {
+    clubId
+    clubHandle
+    clubName
+    __typename
+  }
+  media {
+    type
+    uri
+    name
+    height
+    width
+    rotation
+    __typename
+  }
+  textV2
+  hasPoll
+  getPoll {
+    ...GetPollFields
+    __typename
+  }
+  createdAt
+  upvotecount
+  downvotecount
+  sharecount
+  commentcount
+  isUpvoted
+  isDownvoted
+  isbookmarked
+  isSuspected
+  sharePostId
+  getSharedPost {
+    ...GetSharedPostFields
+    __typename
+  }
+  clubPostShareSetting {
+    isVerifiedCanShare
+    greenTickCanShare
+    normalUserCanShare
+    __typename
+  }
+  __typename
+}
+
+fragment UserFields on User {
+  id
+  firstName
+  lastName
+  username
+  avatar
+  isVerified
+  greenTick
+  tick3
+  __typename
+}
+
+fragment GetPollFields on Poll {
+  pollId
+  question
+  userId
+  postId
+  createdAt
+  updatedAt
+  expiryEnum
+  expiryDate
+  hasUserSelected
+  hasExpired
+  votes
+  options {
+    optionId
+    pollId
+    optionText
+    hasUserSelected
+    votes
+    __typename
+  }
+  __typename
+}
+
+fragment GetSharedPostFields on Post {
+  postId
+  User {
+    ...UserFields
+    __typename
+  }
+  Club {
+    clubId
+    clubHandle
+    clubName
+    __typename
+  }
+  media {
+    type
+    uri
+    name
+    height
+    width
+    rotation
+    __typename
+  }
+  textV2
+  hasPoll
+  getPoll {
+    ...GetPollFields
+    __typename
+  }
+  createdAt
+  isSuspected
+  clubPostShareSetting {
+    isVerifiedCanShare
+    greenTickCanShare
+    normalUserCanShare
+    __typename
+  }
+  __typename
+}
+</stringProp>
+          <stringProp name="GraphQLHTTPSampler.variables"></stringProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">accept</stringProp>
+                <stringProp name="Header.value">*/*</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Authorization</stringProp>
+                <stringProp name="Header.value">Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3ZGE1ZGExNS1jM2ZiLTRiZjAtOTM3ZS01MThlY2UyZmM3ZDgiLCJwIjp7fSwiaWF0IjoxNjc1MjI1Nzc3LCJleHAiOjE2NzU2NTc3Nzd9.D2MWbrNZF3_w5Lb7GL43Rly6axpUrW44VSJXW3KQTCU</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="GraphQLHTTPSamplerGui" testclass="HTTPSamplerProxy" testname="Get Dollar Tag" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument" enabled="true">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&quot;operationName&quot;:null,&quot;query&quot;:&quot;query  {\n  getPostsByHashTagV2(hashTagName: \&quot;${hashtagName}\&quot;, \n  offset: 0, \n  limit: 20) {\n    ...PostFields\n    __typename\n  }\n}\n\nfragment PostFields on Post {\n  postId\n  User {\n    ...UserFields\n    __typename\n  }\n  Club {\n    clubId\n    clubHandle\n    clubName\n    __typename\n  }\n  media {\n    type\n    uri\n    name\n    height\n    width\n    rotation\n    __typename\n  }\n  textV2\n  hasPoll\n  getPoll {\n    ...GetPollFields\n    __typename\n  }\n  createdAt\n  upvotecount\n  downvotecount\n  sharecount\n  commentcount\n  isUpvoted\n  isDownvoted\n  isbookmarked\n  isSuspected\n  sharePostId\n  getSharedPost {\n    ...GetSharedPostFields\n    __typename\n  }\n  clubPostShareSetting {\n    isVerifiedCanShare\n    greenTickCanShare\n    normalUserCanShare\n    __typename\n  }\n  __typename\n}\n\nfragment UserFields on User {\n  id\n  firstName\n  lastName\n  username\n  avatar\n  isVerified\n  greenTick\n  tick3\n  __typename\n}\n\nfragment GetPollFields on Poll {\n  pollId\n  question\n  userId\n  postId\n  createdAt\n  updatedAt\n  expiryEnum\n  expiryDate\n  hasUserSelected\n  hasExpired\n  votes\n  options {\n    optionId\n    pollId\n    optionText\n    hasUserSelected\n    votes\n    __typename\n  }\n  __typename\n}\n\nfragment GetSharedPostFields on Post {\n  postId\n  User {\n    ...UserFields\n    __typename\n  }\n  Club {\n    clubId\n    clubHandle\n    clubName\n    __typename\n  }\n  media {\n    type\n    uri\n    name\n    height\n    width\n    rotation\n    __typename\n  }\n  textV2\n  hasPoll\n  getPoll {\n    ...GetPollFields\n    __typename\n  }\n  createdAt\n  isSuspected\n  clubPostShareSetting {\n    isVerifiedCanShare\n    greenTickCanShare\n    normalUserCanShare\n    __typename\n  }\n  __typename\n}&quot;}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${server}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path"></stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="GraphQLHTTPSampler.operationName"></stringProp>
+          <stringProp name="GraphQLHTTPSampler.query">query  {
+  getPostsByHashTagV2(hashTagName: &quot;${hashtagName}&quot;, 
+  offset: 0, 
+  limit: 20) {
+    ...PostFields
+    __typename
+  }
+}
+
+fragment PostFields on Post {
+  postId
+  User {
+    ...UserFields
+    __typename
+  }
+  Club {
+    clubId
+    clubHandle
+    clubName
+    __typename
+  }
+  media {
+    type
+    uri
+    name
+    height
+    width
+    rotation
+    __typename
+  }
+  textV2
+  hasPoll
+  getPoll {
+    ...GetPollFields
+    __typename
+  }
+  createdAt
+  upvotecount
+  downvotecount
+  sharecount
+  commentcount
+  isUpvoted
+  isDownvoted
+  isbookmarked
+  isSuspected
+  sharePostId
+  getSharedPost {
+    ...GetSharedPostFields
+    __typename
+  }
+  clubPostShareSetting {
+    isVerifiedCanShare
+    greenTickCanShare
+    normalUserCanShare
+    __typename
+  }
+  __typename
+}
+
+fragment UserFields on User {
+  id
+  firstName
+  lastName
+  username
+  avatar
+  isVerified
+  greenTick
+  tick3
+  __typename
+}
+
+fragment GetPollFields on Poll {
+  pollId
+  question
+  userId
+  postId
+  createdAt
+  updatedAt
+  expiryEnum
+  expiryDate
+  hasUserSelected
+  hasExpired
+  votes
+  options {
+    optionId
+    pollId
+    optionText
+    hasUserSelected
+    votes
+    __typename
+  }
+  __typename
+}
+
+fragment GetSharedPostFields on Post {
+  postId
+  User {
+    ...UserFields
+    __typename
+  }
+  Club {
+    clubId
+    clubHandle
+    clubName
+    __typename
+  }
+  media {
+    type
+    uri
+    name
+    height
+    width
+    rotation
+    __typename
+  }
+  textV2
+  hasPoll
+  getPoll {
+    ...GetPollFields
+    __typename
+  }
+  createdAt
+  isSuspected
+  clubPostShareSetting {
+    isVerifiedCanShare
+    greenTickCanShare
+    normalUserCanShare
+    __typename
+  }
+  __typename
+}
+</stringProp>
+          <stringProp name="GraphQLHTTPSampler.variables"></stringProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">accept</stringProp>
+                <stringProp name="Header.value">*/*</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Authorization</stringProp>
+                <stringProp name="Header.value">Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3ZGE1ZGExNS1jM2ZiLTRiZjAtOTM3ZS01MThlY2UyZmM3ZDgiLCJwIjp7fSwiaWF0IjoxNjc1MjI1Nzc3LCJleHAiOjE2NzU2NTc3Nzd9.D2MWbrNZF3_w5Lb7GL43Rly6axpUrW44VSJXW3KQTCU</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="GraphQLHTTPSamplerGui" testclass="HTTPSamplerProxy" testname="Get Post By dollar Tag" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument" enabled="true">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&quot;operationName&quot;:null,&quot;query&quot;:&quot;query {\n  getPostByDollarTag(dollarTagId:319,\n    limit:20,\n    offset:0) {\n    ...PostFields\n    __typename\n  }\n}\n\nfragment PostFields on Post {\n  postId\n  User {\n    ...UserFields\n    __typename\n  }\n  Club {\n    clubId\n    clubHandle\n    clubName\n    __typename\n  }\n  media {\n    type\n    uri\n    name\n    height\n    width\n    rotation\n    __typename\n  }\n  textV2\n  hasPoll\n  getPoll {\n    ...GetPollFields\n    __typename\n  }\n  createdAt\n  upvotecount\n  downvotecount\n  sharecount\n  commentcount\n  isUpvoted\n  isDownvoted\n  isbookmarked\n  isSuspected\n  sharePostId\n  getSharedPost {\n    ...GetSharedPostFields\n    __typename\n  }\n  clubPostShareSetting {\n    isVerifiedCanShare\n    greenTickCanShare\n    normalUserCanShare\n    __typename\n  }\n  __typename\n}\n\nfragment UserFields on User {\n  id\n  firstName\n  lastName\n  username\n  avatar\n  isVerified\n  greenTick\n  tick3\n  __typename\n}\n\nfragment GetPollFields on Poll {\n  pollId\n  question\n  userId\n  postId\n  createdAt\n  updatedAt\n  expiryEnum\n  expiryDate\n  hasUserSelected\n  hasExpired\n  votes\n  options {\n    optionId\n    pollId\n    optionText\n    hasUserSelected\n    votes\n    __typename\n  }\n  __typename\n}\n\nfragment GetSharedPostFields on Post {\n  postId\n  User {\n    ...UserFields\n    __typename\n  }\n  Club {\n    clubId\n    clubHandle\n    clubName\n    __typename\n  }\n  media {\n    type\n    uri\n    name\n    height\n    width\n    rotation\n    __typename\n  }\n  textV2\n  hasPoll\n  getPoll {\n    ...GetPollFields\n    __typename\n  }\n  createdAt\n  isSuspected\n  clubPostShareSetting {\n    isVerifiedCanShare\n    greenTickCanShare\n    normalUserCanShare\n    __typename\n  }\n  __typename\n}&quot;}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${server}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path"></stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="GraphQLHTTPSampler.operationName"></stringProp>
+          <stringProp name="GraphQLHTTPSampler.query">query {
+  getPostByDollarTag(dollarTagId:319,
+    limit:20,
+    offset:0) {
+    ...PostFields
+    __typename
+  }
+}
+
+fragment PostFields on Post {
+  postId
+  User {
+    ...UserFields
+    __typename
+  }
+  Club {
+    clubId
+    clubHandle
+    clubName
+    __typename
+  }
+  media {
+    type
+    uri
+    name
+    height
+    width
+    rotation
+    __typename
+  }
+  textV2
+  hasPoll
+  getPoll {
+    ...GetPollFields
+    __typename
+  }
+  createdAt
+  upvotecount
+  downvotecount
+  sharecount
+  commentcount
+  isUpvoted
+  isDownvoted
+  isbookmarked
+  isSuspected
+  sharePostId
+  getSharedPost {
+    ...GetSharedPostFields
+    __typename
+  }
+  clubPostShareSetting {
+    isVerifiedCanShare
+    greenTickCanShare
+    normalUserCanShare
+    __typename
+  }
+  __typename
+}
+
+fragment UserFields on User {
+  id
+  firstName
+  lastName
+  username
+  avatar
+  isVerified
+  greenTick
+  tick3
+  __typename
+}
+
+fragment GetPollFields on Poll {
+  pollId
+  question
+  userId
+  postId
+  createdAt
+  updatedAt
+  expiryEnum
+  expiryDate
+  hasUserSelected
+  hasExpired
+  votes
+  options {
+    optionId
+    pollId
+    optionText
+    hasUserSelected
+    votes
+    __typename
+  }
+  __typename
+}
+
+fragment GetSharedPostFields on Post {
+  postId
+  User {
+    ...UserFields
+    __typename
+  }
+  Club {
+    clubId
+    clubHandle
+    clubName
+    __typename
+  }
+  media {
+    type
+    uri
+    name
+    height
+    width
+    rotation
+    __typename
+  }
+  textV2
+  hasPoll
+  getPoll {
+    ...GetPollFields
+    __typename
+  }
+  createdAt
+  isSuspected
+  clubPostShareSetting {
+    isVerifiedCanShare
+    greenTickCanShare
+    normalUserCanShare
+    __typename
+  }
+  __typename
+}
+</stringProp>
+          <stringProp name="GraphQLHTTPSampler.variables"></stringProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">accept</stringProp>
+                <stringProp name="Header.value">*/*</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Authorization</stringProp>
+                <stringProp name="Header.value">Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3ZGE1ZGExNS1jM2ZiLTRiZjAtOTM3ZS01MThlY2UyZmM3ZDgiLCJwIjp7fSwiaWF0IjoxNjc1MjI1Nzc3LCJleHAiOjE2NzU2NTc3Nzd9.D2MWbrNZF3_w5Lb7GL43Rly6axpUrW44VSJXW3KQTCU</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="GraphQLHTTPSamplerGui" testclass="HTTPSamplerProxy" testname="Get Book mark feed" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument" enabled="true">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&quot;operationName&quot;:null,&quot;query&quot;:&quot;query  {\n  getPostByDollarTag(dollarTagId:318,\n    limit:20,\n    offset:0) {\n    ...PostFields\n    __typename\n  }\n}\n\nfragment PostFields on Post {\n  postId\n  User {\n    ...UserFields\n    __typename\n  }\n  Club {\n    clubId\n    clubHandle\n    clubName\n    __typename\n  }\n  media {\n    type\n    uri\n    name\n    height\n    width\n    rotation\n    __typename\n  }\n  textV2\n  hasPoll\n  getPoll {\n    ...GetPollFields\n    __typename\n  }\n  createdAt\n  upvotecount\n  downvotecount\n  sharecount\n  commentcount\n  isUpvoted\n  isDownvoted\n  isbookmarked\n  isSuspected\n  sharePostId\n  getSharedPost {\n    ...GetSharedPostFields\n    __typename\n  }\n  clubPostShareSetting {\n    isVerifiedCanShare\n    greenTickCanShare\n    normalUserCanShare\n    __typename\n  }\n  __typename\n}\n\nfragment UserFields on User {\n  id\n  firstName\n  lastName\n  username\n  avatar\n  isVerified\n  greenTick\n  tick3\n  __typename\n}\n\nfragment GetPollFields on Poll {\n  pollId\n  question\n  userId\n  postId\n  createdAt\n  updatedAt\n  expiryEnum\n  expiryDate\n  hasUserSelected\n  hasExpired\n  votes\n  options {\n    optionId\n    pollId\n    optionText\n    hasUserSelected\n    votes\n    __typename\n  }\n  __typename\n}\n\nfragment GetSharedPostFields on Post {\n  postId\n  User {\n    ...UserFields\n    __typename\n  }\n  Club {\n    clubId\n    clubHandle\n    clubName\n    __typename\n  }\n  media {\n    type\n    uri\n    name\n    height\n    width\n    rotation\n    __typename\n  }\n  textV2\n  hasPoll\n  getPoll {\n    ...GetPollFields\n    __typename\n  }\n  createdAt\n  isSuspected\n  clubPostShareSetting {\n    isVerifiedCanShare\n    greenTickCanShare\n    normalUserCanShare\n    __typename\n  }\n  __typename\n}&quot;}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${server}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path"></stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="GraphQLHTTPSampler.operationName"></stringProp>
+          <stringProp name="GraphQLHTTPSampler.query">query  {
+  getPostByDollarTag(dollarTagId:318,
+    limit:20,
+    offset:0) {
+    ...PostFields
+    __typename
+  }
+}
+
+fragment PostFields on Post {
+  postId
+  User {
+    ...UserFields
+    __typename
+  }
+  Club {
+    clubId
+    clubHandle
+    clubName
+    __typename
+  }
+  media {
+    type
+    uri
+    name
+    height
+    width
+    rotation
+    __typename
+  }
+  textV2
+  hasPoll
+  getPoll {
+    ...GetPollFields
+    __typename
+  }
+  createdAt
+  upvotecount
+  downvotecount
+  sharecount
+  commentcount
+  isUpvoted
+  isDownvoted
+  isbookmarked
+  isSuspected
+  sharePostId
+  getSharedPost {
+    ...GetSharedPostFields
+    __typename
+  }
+  clubPostShareSetting {
+    isVerifiedCanShare
+    greenTickCanShare
+    normalUserCanShare
+    __typename
+  }
+  __typename
+}
+
+fragment UserFields on User {
+  id
+  firstName
+  lastName
+  username
+  avatar
+  isVerified
+  greenTick
+  tick3
+  __typename
+}
+
+fragment GetPollFields on Poll {
+  pollId
+  question
+  userId
+  postId
+  createdAt
+  updatedAt
+  expiryEnum
+  expiryDate
+  hasUserSelected
+  hasExpired
+  votes
+  options {
+    optionId
+    pollId
+    optionText
+    hasUserSelected
+    votes
+    __typename
+  }
+  __typename
+}
+
+fragment GetSharedPostFields on Post {
+  postId
+  User {
+    ...UserFields
+    __typename
+  }
+  Club {
+    clubId
+    clubHandle
+    clubName
+    __typename
+  }
+  media {
+    type
+    uri
+    name
+    height
+    width
+    rotation
+    __typename
+  }
+  textV2
+  hasPoll
+  getPoll {
+    ...GetPollFields
+    __typename
+  }
+  createdAt
+  isSuspected
+  clubPostShareSetting {
+    isVerifiedCanShare
+    greenTickCanShare
+    normalUserCanShare
+    __typename
+  }
+  __typename
+}
+</stringProp>
+          <stringProp name="GraphQLHTTPSampler.variables"></stringProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">accept</stringProp>
+                <stringProp name="Header.value">*/*</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Authorization</stringProp>
+                <stringProp name="Header.value">Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3ZGE1ZGExNS1jM2ZiLTRiZjAtOTM3ZS01MThlY2UyZmM3ZDgiLCJwIjp7fSwiaWF0IjoxNjc1MjI1Nzc3LCJleHAiOjE2NzU2NTc3Nzd9.D2MWbrNZF3_w5Lb7GL43Rly6axpUrW44VSJXW3KQTCU</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="GraphQLHTTPSamplerGui" testclass="HTTPSamplerProxy" testname="Get Profile feed" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument" enabled="true">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&quot;operationName&quot;:null,&quot;query&quot;:&quot;query {\n  getProfilePosts(offset: 0, limit:20,\n            userId: \&quot;7da5da15-c3fb-4bf0-937e-518ece2fc7d8\&quot;) {\n    ...PostFields\n    __typename\n  }\n}\nfragment PostFields on Post {\n  postId\n  User {\n    ...UserFields\n    __typename\n  }\n  Club {\n    clubId\n    clubHandle\n    clubName\n    __typename\n  }\n  media {\n    type\n    uri\n    name\n    height\n    width\n    rotation\n    __typename\n  }\n  textV2\n  hasPoll\n  getPoll {\n    ...GetPollFields\n    __typename\n  }\n  createdAt\n  upvotecount\n  downvotecount\n  sharecount\n  commentcount\n  isUpvoted\n  isDownvoted\n  isbookmarked\n  isSuspected\n  sharePostId\n  getSharedPost {\n    ...GetSharedPostFields\n    __typename\n  }\n  clubPostShareSetting {\n    isVerifiedCanShare\n    greenTickCanShare\n    normalUserCanShare\n    __typename\n  }\n  __typename\n}\n\nfragment UserFields on User {\n  id\n  firstName\n  lastName\n  username\n  avatar\n  isVerified\n  greenTick\n  tick3\n  __typename\n}\n\nfragment GetPollFields on Poll {\n  pollId\n  question\n  userId\n  postId\n  createdAt\n  updatedAt\n  expiryEnum\n  expiryDate\n  hasUserSelected\n  hasExpired\n  votes\n  options {\n    optionId\n    pollId\n    optionText\n    hasUserSelected\n    votes\n    __typename\n  }\n  __typename\n}\n\nfragment GetSharedPostFields on Post {\n  postId\n  User {\n    ...UserFields\n    __typename\n  }\n  Club {\n    clubId\n    clubHandle\n    clubName\n    __typename\n  }\n  media {\n    type\n    uri\n    name\n    height\n    width\n    rotation\n    __typename\n  }\n  textV2\n  hasPoll\n  getPoll {\n    ...GetPollFields\n    __typename\n  }\n  createdAt\n  isSuspected\n  clubPostShareSetting {\n    isVerifiedCanShare\n    greenTickCanShare\n    normalUserCanShare\n    __typename\n  }\n  __typename\n}&quot;}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${server}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path"></stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="GraphQLHTTPSampler.operationName"></stringProp>
+          <stringProp name="GraphQLHTTPSampler.query">query {
+  getProfilePosts(offset: 0, limit:20,
+            userId: &quot;7da5da15-c3fb-4bf0-937e-518ece2fc7d8&quot;) {
+    ...PostFields
+    __typename
+  }
+}
+fragment PostFields on Post {
+  postId
+  User {
+    ...UserFields
+    __typename
+  }
+  Club {
+    clubId
+    clubHandle
+    clubName
+    __typename
+  }
+  media {
+    type
+    uri
+    name
+    height
+    width
+    rotation
+    __typename
+  }
+  textV2
+  hasPoll
+  getPoll {
+    ...GetPollFields
+    __typename
+  }
+  createdAt
+  upvotecount
+  downvotecount
+  sharecount
+  commentcount
+  isUpvoted
+  isDownvoted
+  isbookmarked
+  isSuspected
+  sharePostId
+  getSharedPost {
+    ...GetSharedPostFields
+    __typename
+  }
+  clubPostShareSetting {
+    isVerifiedCanShare
+    greenTickCanShare
+    normalUserCanShare
+    __typename
+  }
+  __typename
+}
+
+fragment UserFields on User {
+  id
+  firstName
+  lastName
+  username
+  avatar
+  isVerified
+  greenTick
+  tick3
+  __typename
+}
+
+fragment GetPollFields on Poll {
+  pollId
+  question
+  userId
+  postId
+  createdAt
+  updatedAt
+  expiryEnum
+  expiryDate
+  hasUserSelected
+  hasExpired
+  votes
+  options {
+    optionId
+    pollId
+    optionText
+    hasUserSelected
+    votes
+    __typename
+  }
+  __typename
+}
+
+fragment GetSharedPostFields on Post {
+  postId
+  User {
+    ...UserFields
+    __typename
+  }
+  Club {
+    clubId
+    clubHandle
+    clubName
+    __typename
+  }
+  media {
+    type
+    uri
+    name
+    height
+    width
+    rotation
+    __typename
+  }
+  textV2
+  hasPoll
+  getPoll {
+    ...GetPollFields
+    __typename
+  }
+  createdAt
+  isSuspected
+  clubPostShareSetting {
+    isVerifiedCanShare
+    greenTickCanShare
+    normalUserCanShare
+    __typename
+  }
+  __typename
+}
+</stringProp>
+          <stringProp name="GraphQLHTTPSampler.variables"></stringProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">accept</stringProp>
+                <stringProp name="Header.value">*/*</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Authorization</stringProp>
+                <stringProp name="Header.value">Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3ZGE1ZGExNS1jM2ZiLTRiZjAtOTM3ZS01MThlY2UyZmM3ZDgiLCJwIjp7fSwiaWF0IjoxNjc1MjI1Nzc3LCJleHAiOjE2NzU2NTc3Nzd9.D2MWbrNZF3_w5Lb7GL43Rly6axpUrW44VSJXW3KQTCU</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="GraphQLHTTPSamplerGui" testclass="HTTPSamplerProxy" testname="Get profile info feed" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument" enabled="true">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&quot;operationName&quot;:null,&quot;variables&quot;:{
+    &quot;data&quot;: {
+        &quot;userId&quot;: &quot;7da5da15-c3fb-4bf0-937e-518ece2fc7d8&quot;
+    }
+},&quot;query&quot;:&quot;query  {\n  getProfileInfo(data: \&quot;7da5da15-c3fb-4bf0-937e-518ece2fc7d8\&quot;) {\n    id\n    username\n    firstName\n    lastName\n    avatar\n    profileType\n    isfollow\n    issubscribed\n    cover\n    isVerified\n    greenTick\n    tick3\n    bio\n    watchlistVisibleStatus\n    __typename\n  }\n}&quot;}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${server}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path"></stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="GraphQLHTTPSampler.operationName"></stringProp>
+          <stringProp name="GraphQLHTTPSampler.query">query  {
+  getProfileInfo(data: &quot;7da5da15-c3fb-4bf0-937e-518ece2fc7d8&quot;) {
+    id
+    username
+    firstName
+    lastName
+    avatar
+    profileType
+    isfollow
+    issubscribed
+    cover
+    isVerified
+    greenTick
+    tick3
+    bio
+    watchlistVisibleStatus
+    __typename
+  }
+}
+</stringProp>
+          <stringProp name="GraphQLHTTPSampler.variables">{
+    &quot;data&quot;: {
+        &quot;userId&quot;: &quot;7da5da15-c3fb-4bf0-937e-518ece2fc7d8&quot;
+    }
+}</stringProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">accept</stringProp>
+                <stringProp name="Header.value">*/*</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Authorization</stringProp>
+                <stringProp name="Header.value">Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3ZGE1ZGExNS1jM2ZiLTRiZjAtOTM3ZS01MThlY2UyZmM3ZDgiLCJwIjp7fSwiaWF0IjoxNjc1MjI1Nzc3LCJleHAiOjE2NzU2NTc3Nzd9.D2MWbrNZF3_w5Lb7GL43Rly6axpUrW44VSJXW3KQTCU</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="GraphQLHTTPSamplerGui" testclass="HTTPSamplerProxy" testname="Get Following Club Count" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument" enabled="true">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&quot;operationName&quot;:null,&quot;query&quot;:&quot;query {\n  followers: getFollowersCount(data: {id: \&quot;7da5da15-c3fb-4bf0-937e-518ece2fc7d8\&quot;, entity: User})\n  followings: getFollowingsCount(data: {id: $userId, entity: User})\n  clubs: getClubsOfUserCount(userId: $userId)\n}&quot;}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${server}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path"></stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="GraphQLHTTPSampler.operationName"></stringProp>
+          <stringProp name="GraphQLHTTPSampler.query">query {
+  followers: getFollowersCount(data: {id: &quot;7da5da15-c3fb-4bf0-937e-518ece2fc7d8&quot;, entity: User})
+  followings: getFollowingsCount(data: {id: $userId, entity: User})
+  clubs: getClubsOfUserCount(userId: $userId)
+}
+</stringProp>
+          <stringProp name="GraphQLHTTPSampler.variables"></stringProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">accept</stringProp>
+                <stringProp name="Header.value">*/*</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Authorization</stringProp>
+                <stringProp name="Header.value">Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3ZGE1ZGExNS1jM2ZiLTRiZjAtOTM3ZS01MThlY2UyZmM3ZDgiLCJwIjp7fSwiaWF0IjoxNjc1MjI1Nzc3LCJleHAiOjE2NzU2NTc3Nzd9.D2MWbrNZF3_w5Lb7GL43Rly6axpUrW44VSJXW3KQTCU</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="GraphQLHTTPSamplerGui" testclass="HTTPSamplerProxy" testname="Get Profile Media" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument" enabled="true">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&quot;operationName&quot;:null,&quot;variables&quot;:{
+    &quot;limit&quot;:20,
+    &quot;offset&quot;:0,
+    &quot;data&quot;: {
+        &quot;userId&quot;: &quot;7da5da15-c3fb-4bf0-937e-518ece2fc7d8&quot;
+    }
+},&quot;query&quot;:&quot;query getProfileMedia($data: UserId, $offset: Int, $limit: Int) {\n  getMediaPosts(data: $data, offset: $offset, limit: $limit) {\n    postId\n    media {\n      type\n      uri\n      name\n      __typename\n    }\n    __typename\n  }\n}&quot;}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${server}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path"></stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="GraphQLHTTPSampler.operationName"></stringProp>
+          <stringProp name="GraphQLHTTPSampler.query">query getProfileMedia($data: UserId, $offset: Int, $limit: Int) {
+  getMediaPosts(data: $data, offset: $offset, limit: $limit) {
+    postId
+    media {
+      type
+      uri
+      name
+      __typename
+    }
+    __typename
+  }
+}
+</stringProp>
+          <stringProp name="GraphQLHTTPSampler.variables">{
+    &quot;limit&quot;:20,
+    &quot;offset&quot;:0,
+    &quot;data&quot;: {
+        &quot;userId&quot;: &quot;7da5da15-c3fb-4bf0-937e-518ece2fc7d8&quot;
+    }
+}</stringProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">accept</stringProp>
+                <stringProp name="Header.value">*/*</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Authorization</stringProp>
+                <stringProp name="Header.value">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3ZGE1ZGExNS1jM2ZiLTRiZjAtOTM3ZS01MThlY2UyZmM3ZDgiLCJwIjp7fSwiaWF0IjoxNjc0NDUxMDE5LCJleHAiOjE2NzQ4ODMwMTl9.Jmcu_SOllomsZypqWuEu9Fmg4PYgb-Kwa3zzRXA55-M</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="GraphQLHTTPSamplerGui" testclass="HTTPSamplerProxy" testname="Get Self Feed" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument" enabled="true">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&quot;operationName&quot;:null,&quot;query&quot;:&quot;query  {\n  getSelfFeed(limit: 20,\n    offset: 0) {\n    activityId\n    activityType\n    createdAt\n    avatar\n    cover\n    user {\n      id\n      firstName\n      lastName\n      avatar\n      username\n      isVerified\n      greenTick\n      profileType\n      tick3\n      __typename\n    }\n    followingUser {\n      id\n      firstName\n      lastName\n      username\n      avatar\n      isVerified\n      greenTick\n      tick3\n      profileType\n      __typename\n    }\n    club {\n      clubId\n      clubHandle\n      avatar\n      clubName\n      __typename\n    }\n    followingHashtag {\n      hashtagName\n      hashtagType\n      __typename\n    }\n    followingStocktag {\n      securityId\n      stockName\n      slug\n      nseListingId\n      bseListingId\n      __typename\n    }\n    post {\n      flagged\n      isUpvoted\n      isDownvoted\n      isSuspected\n      upvotecount\n      downvotecount\n      sharecount\n      hasPoll\n      getPoll {\n        ...GetPollFields\n        __typename\n      }\n      comments {\n        textV2\n        media {\n          type\n          uri\n          name\n          __typename\n        }\n        commentId\n        isUpvoted\n        isDownvoted\n        isSuspected\n        upvotecount\n        downvotecount\n        createdAt\n        User {\n          id\n          username\n          firstName\n          lastName\n          avatar\n          isVerified\n          greenTick\n          tick3\n          __typename\n        }\n        replies {\n          textV2\n          media {\n            type\n            uri\n            name\n            __typename\n          }\n          replyId\n          isUpvoted\n          isDownvoted\n          isSuspected\n          createdAt\n          upvotecount\n          downvotecount\n          User {\n            id\n            username\n            firstName\n            lastName\n            avatar\n            isVerified\n            greenTick\n            tick3\n            __typename\n          }\n          __typename\n        }\n        __typename\n      }\n      User {\n        id\n        firstName\n        lastName\n        username\n        avatar\n        isVerified\n        greenTick\n        tick3\n        __typename\n      }\n      meta {\n        isCover\n        isAvatar\n        __typename\n      }\n      commentcount\n      isbookmarked\n      postId\n      clubId\n      Club {\n        clubId\n        clubHandle\n        clubName\n        __typename\n      }\n      userId\n      stockName\n      target\n      stopLoss\n      ideaType\n      media {\n        type\n        uri\n        name\n        height\n        width\n        rotation\n        __typename\n      }\n      textV2\n      postType\n      createdAt\n      updatedAt\n      sharePostId\n      userShares\n      getSharedPost {\n        ...GetSharedPostFields\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n\nfragment GetPollFields on Poll {\n  pollId\n  question\n  userId\n  postId\n  createdAt\n  updatedAt\n  expiryEnum\n  expiryDate\n  hasUserSelected\n  hasExpired\n  votes\n  options {\n    optionId\n    pollId\n    optionText\n    hasUserSelected\n    votes\n    __typename\n  }\n  __typename\n}\n\nfragment GetSharedPostFields on Post {\n  postId\n  User {\n    ...UserFields\n    __typename\n  }\n  Club {\n    clubId\n    clubHandle\n    clubName\n    __typename\n  }\n  media {\n    type\n    uri\n    name\n    height\n    width\n    rotation\n    __typename\n  }\n  textV2\n  hasPoll\n  getPoll {\n    ...GetPollFields\n    __typename\n  }\n  createdAt\n  isSuspected\n  clubPostShareSetting {\n    isVerifiedCanShare\n    greenTickCanShare\n    normalUserCanShare\n    __typename\n  }\n  __typename\n}\n\nfragment UserFields on User {\n  id\n  firstName\n  lastName\n  username\n  avatar\n  isVerified\n  greenTick\n  tick3\n  __typename\n}&quot;}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${server}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path"></stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="GraphQLHTTPSampler.operationName"></stringProp>
+          <stringProp name="GraphQLHTTPSampler.query">query  {
+  getSelfFeed(limit: 20,
+    offset: 0) {
+    activityId
+    activityType
+    createdAt
+    avatar
+    cover
+    user {
+      id
+      firstName
+      lastName
+      avatar
+      username
+      isVerified
+      greenTick
+      profileType
+      tick3
+      __typename
+    }
+    followingUser {
+      id
+      firstName
+      lastName
+      username
+      avatar
+      isVerified
+      greenTick
+      tick3
+      profileType
+      __typename
+    }
+    club {
+      clubId
+      clubHandle
+      avatar
+      clubName
+      __typename
+    }
+    followingHashtag {
+      hashtagName
+      hashtagType
+      __typename
+    }
+    followingStocktag {
+      securityId
+      stockName
+      slug
+      nseListingId
+      bseListingId
+      __typename
+    }
+    post {
+      flagged
+      isUpvoted
+      isDownvoted
+      isSuspected
+      upvotecount
+      downvotecount
+      sharecount
+      hasPoll
+      getPoll {
+        ...GetPollFields
+        __typename
+      }
+      comments {
+        textV2
+        media {
+          type
+          uri
+          name
+          __typename
+        }
+        commentId
+        isUpvoted
+        isDownvoted
+        isSuspected
+        upvotecount
+        downvotecount
+        createdAt
+        User {
+          id
+          username
+          firstName
+          lastName
+          avatar
+          isVerified
+          greenTick
+          tick3
+          __typename
+        }
+        replies {
+          textV2
+          media {
+            type
+            uri
+            name
+            __typename
+          }
+          replyId
+          isUpvoted
+          isDownvoted
+          isSuspected
+          createdAt
+          upvotecount
+          downvotecount
+          User {
+            id
+            username
+            firstName
+            lastName
+            avatar
+            isVerified
+            greenTick
+            tick3
+            __typename
+          }
+          __typename
+        }
+        __typename
+      }
+      User {
+        id
+        firstName
+        lastName
+        username
+        avatar
+        isVerified
+        greenTick
+        tick3
+        __typename
+      }
+      meta {
+        isCover
+        isAvatar
+        __typename
+      }
+      commentcount
+      isbookmarked
+      postId
+      clubId
+      Club {
+        clubId
+        clubHandle
+        clubName
+        __typename
+      }
+      userId
+      stockName
+      target
+      stopLoss
+      ideaType
+      media {
+        type
+        uri
+        name
+        height
+        width
+        rotation
+        __typename
+      }
+      textV2
+      postType
+      createdAt
+      updatedAt
+      sharePostId
+      userShares
+      getSharedPost {
+        ...GetSharedPostFields
+        __typename
+      }
+      __typename
+    }
+    __typename
+  }
+}
+
+fragment GetPollFields on Poll {
+  pollId
+  question
+  userId
+  postId
+  createdAt
+  updatedAt
+  expiryEnum
+  expiryDate
+  hasUserSelected
+  hasExpired
+  votes
+  options {
+    optionId
+    pollId
+    optionText
+    hasUserSelected
+    votes
+    __typename
+  }
+  __typename
+}
+
+fragment GetSharedPostFields on Post {
+  postId
+  User {
+    ...UserFields
+    __typename
+  }
+  Club {
+    clubId
+    clubHandle
+    clubName
+    __typename
+  }
+  media {
+    type
+    uri
+    name
+    height
+    width
+    rotation
+    __typename
+  }
+  textV2
+  hasPoll
+  getPoll {
+    ...GetPollFields
+    __typename
+  }
+  createdAt
+  isSuspected
+  clubPostShareSetting {
+    isVerifiedCanShare
+    greenTickCanShare
+    normalUserCanShare
+    __typename
+  }
+  __typename
+}
+
+fragment UserFields on User {
+  id
+  firstName
+  lastName
+  username
+  avatar
+  isVerified
+  greenTick
+  tick3
+  __typename
+}
+</stringProp>
+          <stringProp name="GraphQLHTTPSampler.variables"></stringProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">accept</stringProp>
+                <stringProp name="Header.value">*/*</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Authorization</stringProp>
+                <stringProp name="Header.value">Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3ZGE1ZGExNS1jM2ZiLTRiZjAtOTM3ZS01MThlY2UyZmM3ZDgiLCJwIjp7fSwiaWF0IjoxNjc1MjI1Nzc3LCJleHAiOjE2NzU2NTc3Nzd9.D2MWbrNZF3_w5Lb7GL43Rly6axpUrW44VSJXW3KQTCU</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="GraphQLHTTPSamplerGui" testclass="HTTPSamplerProxy" testname="Get Home Feed" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument" enabled="true">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&quot;operationName&quot;:null,&quot;query&quot;:&quot;query {\n  getFeedPosts(limit:20,\n    offset:0) {\n    activityId\n    activityType\n    createdAt\n    avatar\n    cover\n    user {\n      id\n      firstName\n      lastName\n      avatar\n      cover\n      username\n      isVerified\n      greenTick\n      tick3\n      profileType\n      __typename\n    }\n    followingUser {\n      id\n      firstName\n      lastName\n      username\n      avatar\n      cover\n      isVerified\n      greenTick\n      tick3\n      profileType\n      __typename\n    }\n    club {\n      clubId\n      clubHandle\n      avatar\n      cover\n      clubName\n      __typename\n    }\n    followingHashtag {\n      hashtagName\n      hashtagType\n      __typename\n    }\n    followingStocktag {\n      securityId\n      stockName\n      slug\n      nseListingId\n      bseListingId\n      __typename\n    }\n    post {\n      ...PostFields\n      comments {\n        ...CommentFields\n        replies {\n          ...ReplyFields\n          __typename\n        }\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n\nfragment PostFields on Post {\n  postId\n  User {\n    ...UserFields\n    __typename\n  }\n  Club {\n    clubId\n    clubHandle\n    clubName\n    __typename\n  }\n  media {\n    type\n    uri\n    name\n    height\n    width\n    rotation\n    __typename\n  }\n  textV2\n  hasPoll\n  getPoll {\n    ...GetPollFields\n    __typename\n  }\n  createdAt\n  upvotecount\n  downvotecount\n  sharecount\n  commentcount\n  isUpvoted\n  isDownvoted\n  isbookmarked\n  isSuspected\n  sharePostId\n  getSharedPost {\n    ...GetSharedPostFields\n    __typename\n  }\n  clubPostShareSetting {\n    isVerifiedCanShare\n    greenTickCanShare\n    normalUserCanShare\n    __typename\n  }\n  __typename\n}\n\nfragment UserFields on User {\n  id\n  firstName\n  lastName\n  username\n  avatar\n  isVerified\n  greenTick\n  tick3\n  __typename\n}\n\nfragment GetPollFields on Poll {\n  pollId\n  question\n  userId\n  postId\n  createdAt\n  updatedAt\n  expiryEnum\n  expiryDate\n  hasUserSelected\n  hasExpired\n  votes\n  options {\n    optionId\n    pollId\n    optionText\n    hasUserSelected\n    votes\n    __typename\n  }\n  __typename\n}\n\nfragment GetSharedPostFields on Post {\n  postId\n  User {\n    ...UserFields\n    __typename\n  }\n  Club {\n    clubId\n    clubHandle\n    clubName\n    __typename\n  }\n  media {\n    type\n    uri\n    name\n    height\n    width\n    rotation\n    __typename\n  }\n  textV2\n  hasPoll\n  getPoll {\n    ...GetPollFields\n    __typename\n  }\n  createdAt\n  isSuspected\n  clubPostShareSetting {\n    isVerifiedCanShare\n    greenTickCanShare\n    normalUserCanShare\n    __typename\n  }\n  __typename\n}\n\nfragment CommentFields on Comment {\n  textV2\n  media {\n    type\n    uri\n    name\n    __typename\n  }\n  commentId\n  isUpvoted\n  isDownvoted\n  isSuspected\n  upvotecount\n  downvotecount\n  createdAt\n  User {\n    ...UserFields\n    __typename\n  }\n  __typename\n}\n\nfragment ReplyFields on Reply {\n  textV2\n  media {\n    type\n    uri\n    name\n    __typename\n  }\n  replyId\n  isUpvoted\n  isDownvoted\n  isSuspected\n  createdAt\n  upvotecount\n  downvotecount\n  User {\n    ...UserFields\n    __typename\n  }\n  __typename\n}&quot;}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${server}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path"></stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="GraphQLHTTPSampler.operationName"></stringProp>
+          <stringProp name="GraphQLHTTPSampler.query">query {
+  getFeedPosts(limit:20,
+    offset:0) {
+    activityId
+    activityType
+    createdAt
+    avatar
+    cover
+    user {
+      id
+      firstName
+      lastName
+      avatar
+      cover
+      username
+      isVerified
+      greenTick
+      tick3
+      profileType
+      __typename
+    }
+    followingUser {
+      id
+      firstName
+      lastName
+      username
+      avatar
+      cover
+      isVerified
+      greenTick
+      tick3
+      profileType
+      __typename
+    }
+    club {
+      clubId
+      clubHandle
+      avatar
+      cover
+      clubName
+      __typename
+    }
+    followingHashtag {
+      hashtagName
+      hashtagType
+      __typename
+    }
+    followingStocktag {
+      securityId
+      stockName
+      slug
+      nseListingId
+      bseListingId
+      __typename
+    }
+    post {
+      ...PostFields
+      comments {
+        ...CommentFields
+        replies {
+          ...ReplyFields
+          __typename
+        }
+        __typename
+      }
+      __typename
+    }
+    __typename
+  }
+}
+
+fragment PostFields on Post {
+  postId
+  User {
+    ...UserFields
+    __typename
+  }
+  Club {
+    clubId
+    clubHandle
+    clubName
+    __typename
+  }
+  media {
+    type
+    uri
+    name
+    height
+    width
+    rotation
+    __typename
+  }
+  textV2
+  hasPoll
+  getPoll {
+    ...GetPollFields
+    __typename
+  }
+  createdAt
+  upvotecount
+  downvotecount
+  sharecount
+  commentcount
+  isUpvoted
+  isDownvoted
+  isbookmarked
+  isSuspected
+  sharePostId
+  getSharedPost {
+    ...GetSharedPostFields
+    __typename
+  }
+  clubPostShareSetting {
+    isVerifiedCanShare
+    greenTickCanShare
+    normalUserCanShare
+    __typename
+  }
+  __typename
+}
+
+fragment UserFields on User {
+  id
+  firstName
+  lastName
+  username
+  avatar
+  isVerified
+  greenTick
+  tick3
+  __typename
+}
+
+fragment GetPollFields on Poll {
+  pollId
+  question
+  userId
+  postId
+  createdAt
+  updatedAt
+  expiryEnum
+  expiryDate
+  hasUserSelected
+  hasExpired
+  votes
+  options {
+    optionId
+    pollId
+    optionText
+    hasUserSelected
+    votes
+    __typename
+  }
+  __typename
+}
+
+fragment GetSharedPostFields on Post {
+  postId
+  User {
+    ...UserFields
+    __typename
+  }
+  Club {
+    clubId
+    clubHandle
+    clubName
+    __typename
+  }
+  media {
+    type
+    uri
+    name
+    height
+    width
+    rotation
+    __typename
+  }
+  textV2
+  hasPoll
+  getPoll {
+    ...GetPollFields
+    __typename
+  }
+  createdAt
+  isSuspected
+  clubPostShareSetting {
+    isVerifiedCanShare
+    greenTickCanShare
+    normalUserCanShare
+    __typename
+  }
+  __typename
+}
+
+fragment CommentFields on Comment {
+  textV2
+  media {
+    type
+    uri
+    name
+    __typename
+  }
+  commentId
+  isUpvoted
+  isDownvoted
+  isSuspected
+  upvotecount
+  downvotecount
+  createdAt
+  User {
+    ...UserFields
+    __typename
+  }
+  __typename
+}
+
+fragment ReplyFields on Reply {
+  textV2
+  media {
+    type
+    uri
+    name
+    __typename
+  }
+  replyId
+  isUpvoted
+  isDownvoted
+  isSuspected
+  createdAt
+  upvotecount
+  downvotecount
+  User {
+    ...UserFields
+    __typename
+  }
+  __typename
+}
+</stringProp>
+          <stringProp name="GraphQLHTTPSampler.variables"></stringProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">accept</stringProp>
+                <stringProp name="Header.value">*/*</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Authorization</stringProp>
+                <stringProp name="Header.value">Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3ZGE1ZGExNS1jM2ZiLTRiZjAtOTM3ZS01MThlY2UyZmM3ZDgiLCJwIjp7fSwiaWF0IjoxNjc1MjI1Nzc3LCJleHAiOjE2NzU2NTc3Nzd9.D2MWbrNZF3_w5Lb7GL43Rly6axpUrW44VSJXW3KQTCU</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+          <boolProp name="useGroupName">true</boolProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
